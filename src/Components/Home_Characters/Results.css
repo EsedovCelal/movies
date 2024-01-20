@@ -1,0 +1,18 @@
+.results_main {
+  display: grid;
+  text-align: center;
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+.cell {
+  background-color: #99bc85;
+  width: 303px;
+  border-style: solid;
+  border-color: blue;
+  margin: 2px;
+  border-radius: 10px;
+  text-align: left;
+}
+.cell_text {
+  padding-left: 3px;
+}

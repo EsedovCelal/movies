@@ -1,10 +1,9 @@
-import "./App.css";
-import Rick_and_morty from "./Components/Rick_and_Morty";
+import Home from "./Components/Home/Home.jsx";
 
 function App() {
   return (
-    <div className="App">
-      <Rick_and_morty />
+    <div>
+      <Home />
     </div>
   );
 }
