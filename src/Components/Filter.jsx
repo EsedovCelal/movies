@@ -7,9 +7,9 @@ import {
   Select,
   MenuItem,
 } from "@mui/material";
-import { status, species, gender } from "../../Helpers/Constants";
+import { status, species, gender } from "../Helpers/Constants";
 
-export default function Tags() {
+export default function Filter() {
   const [stat, setStat] = React.useState("");
   const [spec, setSpec] = React.useState("");
   const [gen, setGen] = React.useState("");
@@ -23,8 +23,15 @@ export default function Tags() {
   const handleChange_gender = (event) => {
     setGen(event.target.value);
   };
+  const clear_all_values = () => {
+    setStat("");
+    setSpec("");
+    setGen("");
+  };
   return (
     <Stack spacing={3} sx={{ width: 250 }}>
+      <h1>Filters</h1>
+      <button onClick={clear_all_values}>Clear</button>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Status</InputLabel>
         <Select

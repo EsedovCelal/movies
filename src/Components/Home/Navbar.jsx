@@ -1,5 +1,5 @@
 import * as React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -18,7 +18,7 @@ import Button from "@mui/material/Button";
 const drawerWidth = 240;
 const navItems = ["Characters", "Episodes", "Locations"];
 
-function DrawerAppBar(props) {
+function Navbar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -104,12 +104,4 @@ function DrawerAppBar(props) {
   );
 }
 
-DrawerAppBar.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window: PropTypes.func,
-};
-
-export default DrawerAppBar;
+export default Navbar;
