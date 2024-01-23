@@ -65,15 +65,21 @@ function Navbar(props) {
 
           <Typography
             variant="h6"
-            component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            // component={RouterLink}
+            // href="/"
           >
-            <Link to="/">Rick And Morty</Link>
+            <Link style={{ color: "red" }} href="/">
+              {" "}
+              Rick And Morty
+            </Link>
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
               <Button key={item} sx={{ color: "black" }}>
-                {item}
+                <Link href={item} style={{ color: "red" }}>
+                  {item}
+                </Link>
               </Button>
             ))}
           </Box>

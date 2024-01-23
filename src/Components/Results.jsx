@@ -24,14 +24,14 @@ function Results({ stat, spec, gen, seach }) {
         {data.map((item) => (
           <div key={item.id} className="cell">
             <div className="cell_text">
+              <div className="results_pic_and_text">
+                <img src={item.image} alt="Logo" />
+                <div className="top-left">{item.status}</div>
+              </div>
               <h2>{item.name}</h2>
               <h2>{item.status}</h2>
               <h2>{item.species}</h2>
               <h2>{item.gender}</h2>
-            </div>
-            <div className="results_pic_and_text">
-              <h5>{item.status}</h5>
-              <img src={item.image} alt="Logo" />
             </div>
           </div>
         ))}

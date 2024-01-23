@@ -16,8 +16,13 @@
 .cell_text {
   padding-left: 3px;
 }
-/* .results_pic_and_text {
-  ​position: absolute;
-  top: 8px;
-  left: 16px;
-} */
+.results_pic_and_text {
+  position: relative;
+  overflow: hidden;
+  /* text-align: center;  */
+}
+.top-left {
+  position: absolute;
+  /* top: 8px;
+  left: 16px; */
+}
