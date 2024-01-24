@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 
-export default function Selection({ sendOptions }) {
+export default function Selection({ getOptions }) {
   const [selected, setSelected] = useState("");
   const handleChange = (event) => {
     setSelected(event.target.value);
@@ -16,7 +16,7 @@ export default function Selection({ sendOptions }) {
     <Stack spacing={3} sx={{ width: 250 }}>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">
-          {sendOptions[0].title}
+          {getOptions[0].title}
         </InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -25,7 +25,7 @@ export default function Selection({ sendOptions }) {
           label="Status"
           onChange={handleChange}
         >
-          {sendOptions.slice(1).map((item, index) => (
+          {getOptions.slice(1).map((item, index) => (
             <MenuItem key={index} value={item.title}>
               {item.title}
             </MenuItem>

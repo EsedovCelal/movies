@@ -8,11 +8,11 @@ export default function HomeCharacters() {
   return (
     <div>
       <Navbar />
-      <Selection sendOptions={status} />
+      <Selection getOptions={status} />
       <br />
-      <Selection sendOptions={species} />
+      <Selection getOptions={species} />
       <br />
-      <Selection sendOptions={gender} />
+      <Selection getOptions={gender} />
       <Results />
     </div>
   );
