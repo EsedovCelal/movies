@@ -12,9 +12,10 @@ import {
   ListItemText,
   Typography,
   Toolbar,
+  Link,
+  Button,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Link, Button } from "@mui/material";
 
 const drawerWidth = 240;
 const navItems = ["Characters", "Episodes", "Locations"];

@@ -1,5 +1,8 @@
 export const status = [
   {
+    title: "Status",
+  },
+  {
     title: "Alive",
   },
   {
@@ -10,6 +13,9 @@ export const status = [
   },
 ];
 export const gender = [
+  {
+    title: "Gender",
+  },
   {
     title: "female",
   },
@@ -24,6 +30,7 @@ export const gender = [
   },
 ];
 export const species = [
+  { title: "Species" },
   {
     title: "Human",
   },
