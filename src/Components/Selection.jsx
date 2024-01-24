@@ -25,7 +25,7 @@ export default function Selection({ sendOptions }) {
           label="Status"
           onChange={handleChange}
         >
-          {sendOptions.map((item, index) => (
+          {sendOptions.slice(1).map((item, index) => (
             <MenuItem key={index} value={item.title}>
               {item.title}
             </MenuItem>
