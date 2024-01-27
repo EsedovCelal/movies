@@ -7,11 +7,12 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 
-export default function Selection({ getOptions }) {
+export default function Selection({ getOptions, send }) {
   const [selected, setSelected] = useState("");
   const handleChange = (event) => {
     setSelected(event.target.value);
   };
+  selected && send(selected);
   return (
     <Stack spacing={3} sx={{ width: 250 }}>
       <FormControl fullWidth>

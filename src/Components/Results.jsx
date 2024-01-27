@@ -6,7 +6,10 @@ function Results({ stat, spec, gen, seach }) {
 
   useEffect(() => {
     fetch(
-      `https://rickandmortyapi.com/api/character/?species=${spec}&status=${stat}&gender=${gen}&name=${seach}`,
+      `https://rickandmortyapi.com/api/character
+      ${stat ? `?status=${stat}` : ""}
+      ${spec ? `&species=${spec}` : ""}
+      ${gen ? `&gender=${gen}` : ""}`,
       {
         method: "GET",
       }
