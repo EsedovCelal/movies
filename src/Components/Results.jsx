@@ -1,13 +1,40 @@
 import React, { useState, useEffect } from "react";
-import "./Results.css";
+import { Link } from "react-router-dom";
 
-function Results({ stat, spec, gen, seach }) {
+function Results({
+  stat,
+  spec,
+  gen,
+  seach,
+  allCharacterForEpisode,
+  characterId,
+}) {
+  const homeCharactersResultsCell = {
+    maxWidth: "303px",
+    borderStyle: "solid",
+    borderColor: "blue",
+    margin: "2px",
+    borderRadius: "10px",
+    textAlign: "left",
+  };
+  const homeCharactersResultsPicAndText = {
+    position: "relative",
+    overflow: "hidden",
+  };
+  const homeCharactersResultsCellContents = {
+    paddingLeft: "3px",
+  };
+  const homeCharactersResults = {
+    display: "grid",
+    textAlign: "center",
+    gridTemplateColumns: "auto auto auto",
+  };
   const [data, setData] = useState(null);
 
   useEffect(() => {
     fetch(
-      `https://rickandmortyapi.com/api/character
-      ${stat ? `?status=${stat}` : ""}
+      `https://rickandmortyapi.com/api${window.location.pathname}?
+      ${stat ? `&status=${stat}` : ""}
       ${spec ? `&species=${spec}` : ""}
       ${gen ? `&gender=${gen}` : ""}`,
       {
@@ -15,30 +42,31 @@ function Results({ stat, spec, gen, seach }) {
       }
     )
       .then((response) => response.json())
-      .then((getteddata) => {
-        setData(getteddata.results);
+      .then((receiveddata) => {
+        setData(receiveddata.results);
       })
       .catch((error) => console.log(error));
   }, [gen, stat, spec, seach]);
 
   return (
     data && (
-      <div className="results_main">
-        {data.map((item) => (
-          <div key={item.id} className="cell">
-            <div className="cell_text">
-              <div className="results_pic_and_text">
+      <Link to={`/character/${1}`}>
+        <div style={homeCharactersResults}>
+          {(data || allCharacterForEpisode).map((item) => (
+            <div key={item.id} style={homeCharactersResultsCell}>
+              <div style={homeCharactersResultsPicAndText}>
                 <img src={item.image} alt="Logo" />
                 <div className="top-left">{item.status}</div>
               </div>
-              <h2>{item.name}</h2>
-              <h2>{item.status}</h2>
-              <h2>{item.species}</h2>
-              <h2>{item.gender}</h2>
+              <div style={homeCharactersResultsCellContents}>
+                <h2>{item.name}</h2>
+                <p>last Location</p>
+                <h2>{item.location.name}</h2>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      </Link>
     )
   );
 }

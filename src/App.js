@@ -1,15 +1,20 @@
 import React from "react";
 import HomeCharacters from "./Components/Home_Characters/Home_Characters.jsx";
 import AllEpisodes from "./Components/Home_Episodes/All_episodes.jsx";
+import AllLocations from "./Components/Home_Locations/All_locations";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-// import Navbar from "./Components/Home_Characters/Navbar.jsx";
+import Details from "./Components/Details.jsx";
+import Navbar from "./Components/Navbar";
 function App() {
   return (
     <div className="main_page">
+      <Navbar />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomeCharacters />} />
-          <Route path="/Episodes" element={<AllEpisodes />} />
+          <Route path="/character" element={<HomeCharacters />} />
+          <Route path="/episodes" element={<AllEpisodes />} />
+          <Route path="/locations" element={<AllLocations />} />
+          <Route path="/character/1" element={<Details />} />
         </Routes>
       </BrowserRouter>
     </div>

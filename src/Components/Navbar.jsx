@@ -18,7 +18,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 
 const drawerWidth = 240;
-const navItems = ["Characters", "Episodes", "Locations"];
+const navItems = ["character", "episodes", "locations"];
 
 function Navbar(props) {
   const { window } = props;
@@ -67,10 +67,8 @@ function Navbar(props) {
           <Typography
             variant="h6"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-            // component={RouterLink}
-            // href="/"
           >
-            <Link style={{ color: "red" }} href="/">
+            <Link style={{ color: "red" }} href="/character">
               {" "}
               Rick And Morty
             </Link>
