@@ -50,10 +50,10 @@ function Results({
 
   return (
     data && (
-      <Link to={`/character/${1}`}>
-        <div style={homeCharactersResults}>
-          {(data || allCharacterForEpisode).map((item) => (
-            <div key={item.id} style={homeCharactersResultsCell}>
+      <div style={homeCharactersResults}>
+        {(data || allCharacterForEpisode).map((item) => (
+          <Link to={`/character/${item.id}`} key={item.id}>
+            <div style={homeCharactersResultsCell}>
               <div style={homeCharactersResultsPicAndText}>
                 <img src={item.image} alt="Logo" />
                 <div className="top-left">{item.status}</div>
@@ -64,9 +64,9 @@ function Results({
                 <h2>{item.location.name}</h2>
               </div>
             </div>
-          ))}
-        </div>
-      </Link>
+          </Link>
+        ))}
+      </div>
     )
   );
 }

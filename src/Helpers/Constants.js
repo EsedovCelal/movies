@@ -59,7 +59,7 @@ export const species = [
     title: "Robot",
   },
   {
-    title: "Cronenborg",
+    title: "Cronenberg",
   },
   {
     title: "Planet",
