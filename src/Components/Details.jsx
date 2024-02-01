@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./Details.css";
 
 function Details() {
   const [character, SetCharacter] = useState("");
@@ -37,10 +38,24 @@ function Details() {
           <h1>{character.name}</h1>
           <img src={character.image} alt="Logo" />
           <p style={CharacterDetailsStatus}>{character.status}</p>
-          <p>Gender: {character.gender}</p>
-          <p>Location: {character.location.name}</p>
-          <p>Origins: {character.origin.name}</p>
-          <p>Species: {character.species}</p>
+          <div className="detailsText">
+            <div>
+              <span>Gender: </span>
+              {character.gender}
+            </div>
+            <div>
+              <span>Location: </span>
+              {character.location.name}
+            </div>
+            <div>
+              <span>Origins: </span>
+              {character.origin.name}
+            </div>
+            <div>
+              <span>Species: </span>
+              {character.species}
+            </div>
+          </div>
         </div>
       </div>
     )

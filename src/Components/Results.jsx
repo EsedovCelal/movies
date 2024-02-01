@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import "./Results.css";
 
 function Results({
   stat,
@@ -9,26 +10,6 @@ function Results({
   allCharacterForEpisode,
   characterId,
 }) {
-  const homeCharactersResultsCell = {
-    maxWidth: "303px",
-    borderStyle: "solid",
-    borderColor: "blue",
-    margin: "2px",
-    borderRadius: "10px",
-    textAlign: "left",
-  };
-  const homeCharactersResultsPicAndText = {
-    position: "relative",
-    overflow: "hidden",
-  };
-  const homeCharactersResultsCellContents = {
-    paddingLeft: "3px",
-  };
-  const homeCharactersResults = {
-    display: "grid",
-    textAlign: "center",
-    gridTemplateColumns: "auto auto auto",
-  };
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -50,15 +31,27 @@ function Results({
 
   return (
     data && (
-      <div style={homeCharactersResults}>
+      <div className="homeCharactersResults">
         {(data || allCharacterForEpisode).map((item) => (
           <Link to={`/character/${item.id}`} key={item.id}>
-            <div style={homeCharactersResultsCell}>
-              <div style={homeCharactersResultsPicAndText}>
+            <div className="homeCharactersResultsCell">
+              <div className="homeCharactersResultsPicAndText">
                 <img src={item.image} alt="Logo" />
-                <div className="top-left">{item.status}</div>
+                <div
+                  className="homeCharactersResultsTextOnPic"
+                  style={{
+                    backgroundColor:
+                      item.status === "alive"
+                        ? "green"
+                        : item.status === "dead"
+                        ? "red"
+                        : "grey",
+                  }}
+                >
+                  {item.status}
+                </div>
               </div>
-              <div style={homeCharactersResultsCellContents}>
+              <div className="homeCharactersResultsCellContents">
                 <h2>{item.name}</h2>
                 <p>last Location</p>
                 <h2>{item.location.name}</h2>

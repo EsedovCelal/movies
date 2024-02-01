@@ -1,0 +1,29 @@
+.homeCharactersResultsTextOnPic {
+  position: absolute;
+  top: 8px;
+  left: 5px;
+  width: 80px;
+  color: white;
+  border-radius: 5px;
+}
+.homeCharactersResultsCell {
+  max-width: 303px;
+  border-style: solid;
+  border-color: blue;
+  margin: 2px;
+  border-radius: 10px;
+  text-align: left;
+}
+.homeCharactersResultsPicAndText {
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+}
+.homeCharactersResults {
+  display: grid;
+  text-align: center;
+  grid-template-columns: auto auto auto;
+}
+.homeCharactersResultsCellContents {
+  padding-left: 3px;
+}
