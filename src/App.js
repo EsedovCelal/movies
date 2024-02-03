@@ -5,9 +5,10 @@ import AllLocations from "./Components/Home_Locations/All_locations";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Details from "./Components/Details.jsx";
 import Navbar from "./Components/Navbar";
+import { Box } from "@mui/material";
 function App() {
   return (
-    <div className="main_page">
+    <Box className="main_page">
       <Navbar />
       <BrowserRouter>
         <Routes>
@@ -17,7 +18,7 @@ function App() {
           <Route path="/character/*" element={<Details />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </Box>
   );
 }
 

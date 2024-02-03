@@ -4,3 +4,10 @@
 .detailsText span {
   font-weight: 700;
 }
+.characterDetailsStatus {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 5px;
+  height: 35px;
+}

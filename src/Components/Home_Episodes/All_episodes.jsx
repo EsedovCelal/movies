@@ -2,11 +2,10 @@ import * as React from "react";
 import Selection from "../Selection";
 import { useState, useEffect } from "react";
 import Results from "../Results";
-
+import { Box } from "@mui/material";
 export default function AllEpisodes() {
   const [episodeNum, setEpisodeNum] = useState([{ title: "Episode" }]);
   const [page, setPage] = useState(1);
-  const [arrayForResult, setArrayForResult] = useState("");
   const dataFromChildForSpecies = (data) => {
     console.log(data.match(/\d/g).join(""));
   };
@@ -29,9 +28,13 @@ export default function AllEpisodes() {
   }, [page]);
 
   return (
-    <div>
-      <Selection getOptions={episodeNum} send={dataFromChildForSpecies} />
+    <Box>
+      <Selection
+        title={"Episodes"}
+        options={episodeNum}
+        setNewOption={dataFromChildForSpecies}
+      />
       <Results />
-    </div>
+    </Box>
   );
 }

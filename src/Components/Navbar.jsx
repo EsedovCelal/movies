@@ -3,7 +3,6 @@ import {
   AppBar,
   Box,
   CssBaseline,
-  Divider,
   Drawer,
   IconButton,
   List,
@@ -33,7 +32,7 @@ function Navbar(props) {
       <Typography variant="h6" sx={{ my: 2 }}>
         MUI
       </Typography>
-      <Divider />
+      <Box />
       <List>
         {navItems.map((item) => (
           <ListItem key={item} disablePadding>
@@ -52,7 +51,7 @@ function Navbar(props) {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar component="nav">
+      <AppBar sx={{ backgroundColor: "#1A1A1D" }} component="nav">
         <Toolbar>
           <IconButton
             color="inherit"
@@ -68,18 +67,20 @@ function Navbar(props) {
             variant="h6"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            <Link style={{ color: "red" }} href="/character">
-              {" "}
-              Rick And Morty
+            <Link style={{ color: "danger" }} href="/character">
+              <Button size="md" sx={{ color: "#FA5D29" }}>
+                {" "}
+                Rick And Morty
+              </Button>
             </Link>
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: "black" }}>
-                <Link href={`/${item}`} style={{ color: "red" }}>
+              <Link key={item} href={`/${item}`}>
+                <Button size="md" sx={{ color: "#FA5D29" }}>
                   {item}
-                </Link>
-              </Button>
+                </Button>
+              </Link>
             ))}
           </Box>
         </Toolbar>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Details.css";
+import { Box } from "@mui/material";
 
 function Details() {
   const [character, SetCharacter] = useState("");
@@ -8,14 +9,6 @@ function Details() {
   const pathname = url.pathname;
   const mainDetails = {
     textAlign: "center",
-  };
-  const CharacterDetailsStatus = {
-    backgroundColor: "#65B741",
-    color: "white",
-    fontSize: "20px",
-    fontWeight: "bold",
-    borderRadius: "5px",
-    height: "35px",
   };
   const mainDetailsCell = {
     width: "303px",
@@ -33,31 +26,43 @@ function Details() {
   }, []);
   return (
     character && (
-      <div style={mainDetails}>
-        <div style={mainDetailsCell} key={character.id}>
+      <Box style={mainDetails}>
+        <Box style={mainDetailsCell} key={character.id}>
           <h1>{character.name}</h1>
           <img src={character.image} alt="Logo" />
-          <p style={CharacterDetailsStatus}>{character.status}</p>
-          <div className="detailsText">
-            <div>
+          <p
+            className="characterDetailsStatus"
+            style={{
+              backgroundColor:
+                character.status === "Alive"
+                  ? "green"
+                  : character.status === "Dead"
+                  ? "red"
+                  : "grey",
+            }}
+          >
+            {character.status}
+          </p>
+          <Box className="detailsText">
+            <Box>
               <span>Gender: </span>
               {character.gender}
-            </div>
-            <div>
+            </Box>
+            <Box>
               <span>Location: </span>
               {character.location.name}
-            </div>
-            <div>
+            </Box>
+            <Box>
               <span>Origins: </span>
               {character.origin.name}
-            </div>
-            <div>
+            </Box>
+            <Box>
               <span>Species: </span>
               {character.species}
-            </div>
-          </div>
-        </div>
-      </div>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
     )
   );
 }

@@ -1,67 +1,60 @@
 export const status = [
   {
-    title: "Status",
+    label: "Alive",
   },
   {
-    title: "Alive",
+    label: "Dead",
   },
   {
-    title: "Dead",
-  },
-  {
-    title: "Unknown",
+    label: "Unknown",
   },
 ];
 export const gender = [
   {
-    title: "Gender",
+    label: "female",
   },
   {
-    title: "female",
+    label: "male",
   },
   {
-    title: "male",
+    label: "genderless",
   },
   {
-    title: "genderless",
-  },
-  {
-    title: "unknown",
+    label: "unknown",
   },
 ];
 export const species = [
-  { title: "Species" },
   {
-    title: "Human",
+    label: "Human",
   },
   {
-    title: "Alien",
+    label: "Alien",
   },
   {
-    title: "Humanoid",
+    label: "Humanoid",
   },
   {
-    title: "Poopybutthole",
+    label: "Poopybutthole",
   },
   {
-    title: "Mythological",
+    label: "Mythological",
   },
   {
-    title: "Unknown",
+    label: "Unknown",
   },
   {
-    title: "Animal",
+    label: "Animal",
   },
   {
-    title: "Disease",
+    label: "Disease",
   },
   {
-    title: "Robot",
+    label: "Robot",
   },
   {
-    title: "Cronenberg",
+    label: "Cronenberg",
   },
   {
-    title: "Planet",
+    label: "Planet",
   },
 ];

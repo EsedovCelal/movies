@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Results.css";
+import { Typography, Box, Card, Grid } from "@mui/material";
 
 function Results({
   stat,
   spec,
   gen,
-  seach,
+  search,
   allCharacterForEpisode,
   characterId,
 }) {
@@ -15,6 +16,7 @@ function Results({
   useEffect(() => {
     fetch(
       `https://rickandmortyapi.com/api${window.location.pathname}?
+      ${search ? `&name=${search}` : ""}
       ${stat ? `&status=${stat}` : ""}
       ${spec ? `&species=${spec}` : ""}
       ${gen ? `&gender=${gen}` : ""}`,
@@ -23,43 +25,53 @@ function Results({
       }
     )
       .then((response) => response.json())
-      .then((receiveddata) => {
-        setData(receiveddata.results);
+      .then((receivedData) => {
+        setData(receivedData.results);
       })
       .catch((error) => console.log(error));
-  }, [gen, stat, spec, seach]);
+  }, [gen, stat, spec, search]);
 
   return (
     data && (
-      <div className="homeCharactersResults">
+      <Grid container spacing={4} className="homeCharactersResults">
         {(data || allCharacterForEpisode).map((item) => (
-          <Link to={`/character/${item.id}`} key={item.id}>
-            <div className="homeCharactersResultsCell">
-              <div className="homeCharactersResultsPicAndText">
-                <img src={item.image} alt="Logo" />
-                <div
-                  className="homeCharactersResultsTextOnPic"
-                  style={{
-                    backgroundColor:
-                      item.status === "alive"
-                        ? "green"
-                        : item.status === "dead"
-                        ? "red"
-                        : "grey",
-                  }}
-                >
-                  {item.status}
-                </div>
-              </div>
-              <div className="homeCharactersResultsCellContents">
-                <h2>{item.name}</h2>
-                <p>last Location</p>
-                <h2>{item.location.name}</h2>
-              </div>
-            </div>
+          <Link
+            to={`/character/${item.id}`}
+            className="homeCharactersResultsLink"
+            key={item.id}
+          >
+            <Card>
+              <Box className="homeCharactersResultsCell">
+                <Box className="homeCharactersResultsPicAndText">
+                  <img src={item.image} alt="Logo" />
+                  <Box
+                    className="homeCharactersResultsTextOnPic"
+                    style={{
+                      backgroundColor:
+                        item.status === "Alive"
+                          ? "green"
+                          : item.status === "Dead"
+                          ? "red"
+                          : "grey",
+                    }}
+                  >
+                    {item.status}
+                  </Box>
+                </Box>
+                <Box className="homeCharactersResultsCellContents">
+                  <Typography fontWeight={"bold"} fontSize={"20px"}>
+                    {item.name}
+                  </Typography>
+                  <Typography>last Location</Typography>
+                  <Typography fontSize={"20px"}>
+                    {item.location.name}
+                  </Typography>
+                </Box>
+              </Box>
+            </Card>
           </Link>
         ))}
-      </div>
+      </Grid>
     )
   );
 }
