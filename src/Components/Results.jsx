@@ -3,14 +3,7 @@ import { Link } from "react-router-dom";
 import "./Results.css";
 import { Typography, Box, Card, Grid } from "@mui/material";
 
-function Results({
-  stat,
-  spec,
-  gen,
-  search,
-  allCharacterForEpisode,
-  characterId,
-}) {
+function Results({ stat, spec, gen, search, allCharacterForEpisode }) {
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -33,7 +26,7 @@ function Results({
 
   return (
     data && (
-      <Grid container spacing={4} className="homeCharactersResults">
+      <Grid container className="homeCharactersResults">
         {(data || allCharacterForEpisode).map((item) => (
           <Link
             to={`/character/${item.id}`}

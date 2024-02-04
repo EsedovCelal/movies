@@ -4,12 +4,12 @@ import { useState, useEffect } from "react";
 import Results from "../Results";
 import { Box } from "@mui/material";
 export default function AllEpisodes() {
-  const [episodeNum, setEpisodeNum] = useState([{ title: "Episode" }]);
+  const [dataFromEpisode, SetDataFromEpisode] = useState(null);
+  const [episodeNum, setEpisodeNum] = useState([]);
   const [page, setPage] = useState(1);
-  const dataFromChildForSpecies = (data) => {
-    console.log(data.match(/\d/g).join(""));
+  const dataFromChildForEpisode = (data) => {
+    SetDataFromEpisode(data);
   };
-
   useEffect(() => {
     fetch(`https://rickandmortyapi.com/api/episode/${page}`, {
       method: "GET",
@@ -20,7 +20,7 @@ export default function AllEpisodes() {
           setPage(page + 1);
           setEpisodeNum((episodeNum) => [
             ...episodeNum,
-            { title: `Episode - ${data.id}` },
+            { label: `Episode - ${data.id}` },
           ]);
         }
       })
@@ -32,7 +32,8 @@ export default function AllEpisodes() {
       <Selection
         title={"Episodes"}
         options={episodeNum}
-        setNewOption={dataFromChildForSpecies}
+        selectedOption={dataFromEpisode}
+        setSelectedOption={dataFromChildForEpisode}
       />
       <Results />
     </Box>

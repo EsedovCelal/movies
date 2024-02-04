@@ -8,7 +8,7 @@ import Navbar from "./Components/Navbar";
 import { Box } from "@mui/material";
 function App() {
   return (
-    <Box className="main_page">
+    <Box>
       <Navbar />
       <BrowserRouter>
         <Routes>

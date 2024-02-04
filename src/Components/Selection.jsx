@@ -23,7 +23,7 @@ export default function Selection({
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={selectedOption}
+          value={selectedOption == null ? "" : selectedOption}
           onChange={handleChange}
         >
           {options.map((item, index) => (

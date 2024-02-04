@@ -11,19 +11,22 @@ export default function HomeCharacters() {
   const [dataFromGender, setDataFromGender] = useState(null);
   const [dataFromSearch, SetDataFromSearch] = useState(null);
 
-  const HomeCharacterInputFilerAndResults = {};
   const HomeCharacterFilAndRes = {
     display: "flex",
     justifyContent: "center",
   };
-  const HomeCharacterInputAndButton = {
-    display: "flex",
-    justifyContent: "center",
+  const HomeCharacterInput = {
+    textAlign: "center",
   };
+  const HomeCharacterInputText = {
+    fontSize: "50px",
+  };
+
   const HomeCharacterClearFilter = {
     cursor: "pointer",
     textDecoration: "underline",
   };
+  const HomeCharacterInputFilerAndResults = {};
   const HomeCharacterFilter = {};
   const HomeCharacterResults = {};
 
@@ -43,15 +46,17 @@ export default function HomeCharacters() {
     dataFromChildForStatus(null);
     dataFromChildForSpecies(null);
     dataFromChildForGender(null);
+    SetDataFromSearch(null);
   };
 
   return (
     <Box>
       <Box sx={HomeCharacterInputFilerAndResults}>
-        <Box sx={HomeCharacterInputAndButton}>
-          <Typography>Characters</Typography>
+        <Box sx={HomeCharacterInput}>
+          <Typography sx={HomeCharacterInputText}>Characters</Typography>
           <Box>
             <TextField
+              value={dataFromSearch === null ? "" : dataFromSearch}
               onChange={(event) => SetDataFromSearch(event.target.value)}
             ></TextField>
           </Box>
