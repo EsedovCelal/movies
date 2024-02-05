@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Results from "../Results";
 import { Box, Typography } from "@mui/material";
 export default function AllEpisodes() {
-  const [dataFromEpisode, SetDataFromEpisode] = useState(null); //for selected episode from results
+  const [dataFromEpisode, SetDataFromEpisode] = useState(null); //for selected episode from Selection
   const [episodeInfo, setEpisodeInfo] = useState([]); //for taking all episode count
   const [page, setPage] = useState(1); //for +1 page number
   // const [charactersForOneArray, setCharacterForOneArray] = useState([]);
@@ -38,9 +38,20 @@ export default function AllEpisodes() {
   return (
     <Box>
       <Box>
-        {/* <Typography>Episode name: {episodeInfo[0].name}</Typography>
-        <Typography>Air Date: {episodeInfo[0].air_date}</Typography> */}
+        <Typography>
+          Episode name:
+          {dataFromEpisode
+            ? episodeInfo[dataFromEpisode.replace(/^\D+/g, "") - 1].name
+            : ""}
+        </Typography>
+        <Typography>
+          Air Date:
+          {dataFromEpisode
+            ? episodeInfo[dataFromEpisode.replace(/^\D+/g, "") - 1].air_date
+            : ""}
+        </Typography>
       </Box>
+      {console.log(dataFromEpisode ? dataFromEpisode.replace(/^\D+/g, "") : "")}
       <Selection
         title={"Episodes"}
         options={episodeInfo}
