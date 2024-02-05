@@ -15,13 +15,15 @@ export default function HomeCharacters() {
     display: "flex",
     justifyContent: "center",
   };
-  const HomeCharacterInput = {
+  const HomeCharacterInputAndText = {
     textAlign: "center",
   };
   const HomeCharacterInputText = {
     fontSize: "50px",
   };
-
+  const HomeCharacterInput = {
+    width: "40%",
+  };
   const HomeCharacterClearFilter = {
     cursor: "pointer",
     textDecoration: "underline",
@@ -52,10 +54,11 @@ export default function HomeCharacters() {
   return (
     <Box>
       <Box sx={HomeCharacterInputFilerAndResults}>
-        <Box sx={HomeCharacterInput}>
+        <Box sx={HomeCharacterInputAndText}>
           <Typography sx={HomeCharacterInputText}>Characters</Typography>
           <Box>
             <TextField
+              sx={HomeCharacterInput}
               value={dataFromSearch === null ? "" : dataFromSearch}
               onChange={(event) => SetDataFromSearch(event.target.value)}
             ></TextField>
@@ -96,6 +99,7 @@ export default function HomeCharacters() {
               stat={dataFromStatus}
               gen={dataFromGender}
               search={dataFromSearch}
+              forlink="/character"
             />
           </Box>
         </Box>

@@ -2,11 +2,12 @@ import * as React from "react";
 import Selection from "../Selection";
 import { useState, useEffect } from "react";
 import Results from "../Results";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 export default function AllEpisodes() {
-  const [dataFromEpisode, SetDataFromEpisode] = useState(null);
-  const [episodeNum, setEpisodeNum] = useState([]);
-  const [page, setPage] = useState(1);
+  const [dataFromEpisode, SetDataFromEpisode] = useState(null); //for selected episode from results
+  const [episodeInfo, setEpisodeInfo] = useState([]); //for taking all episode count
+  const [page, setPage] = useState(1); //for +1 page number
+  // const [charactersForOneArray, setCharacterForOneArray] = useState([]);
   const dataFromChildForEpisode = (data) => {
     SetDataFromEpisode(data);
   };
@@ -18,10 +19,17 @@ export default function AllEpisodes() {
       .then((data) => {
         if (data.id) {
           setPage(page + 1);
-          setEpisodeNum((episodeNum) => [
-            ...episodeNum,
-            { label: `Episode - ${data.id}` },
+          setEpisodeInfo((episodeInfo) => [
+            ...episodeInfo,
+            {
+              label: `Episode - ${data.id}`,
+              name: `${data.name}`,
+              air_date: `${data.air_date}`,
+            },
           ]);
+        }
+        if (data.error === "Episode not found") {
+          console.log("end");
         }
       })
       .catch((error) => console.log(error));
@@ -29,13 +37,16 @@ export default function AllEpisodes() {
 
   return (
     <Box>
+      <Box>
+        {/* <Typography>Episode name: {episodeInfo[0].name}</Typography>
+        <Typography>Air Date: {episodeInfo[0].air_date}</Typography> */}
+      </Box>
       <Selection
         title={"Episodes"}
-        options={episodeNum}
+        options={episodeInfo}
         selectedOption={dataFromEpisode}
         setSelectedOption={dataFromChildForEpisode}
       />
-      <Results />
     </Box>
   );
 }

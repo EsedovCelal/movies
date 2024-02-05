@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import "./Results.css";
 import { Typography, Box, Card, Grid } from "@mui/material";
 
-function Results({ stat, spec, gen, search, allCharacterForEpisode }) {
+function Results({ stat, spec, gen, search, forlink }) {
   const [data, setData] = useState(null);
 
   useEffect(() => {
     fetch(
-      `https://rickandmortyapi.com/api${window.location.pathname}?
+      `https://rickandmortyapi.com/api${forlink}?
       ${search ? `&name=${search}` : ""}
       ${stat ? `&status=${stat}` : ""}
       ${spec ? `&species=${spec}` : ""}
@@ -27,7 +27,7 @@ function Results({ stat, spec, gen, search, allCharacterForEpisode }) {
   return (
     data && (
       <Grid container className="homeCharactersResults">
-        {(data || allCharacterForEpisode).map((item) => (
+        {data.map((item) => (
           <Link
             to={`/character/${item.id}`}
             className="homeCharactersResultsLink"
