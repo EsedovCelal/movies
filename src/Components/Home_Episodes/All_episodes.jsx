@@ -7,7 +7,7 @@ export default function AllEpisodes() {
   const [dataFromEpisode, SetDataFromEpisode] = useState(null); //for selected episode from Selection
   const [episodeInfo, setEpisodeInfo] = useState([]); //for taking all episode count
   const [page, setPage] = useState(1); //for +1 page number
-  // const [charactersForOneArray, setCharacterForOneArray] = useState([]);
+  const [charactersForOneEpisode, setCharactersForOneEpisode] = useState([]);
   const dataFromChildForEpisode = (data) => {
     SetDataFromEpisode(data);
   };
@@ -58,6 +58,7 @@ export default function AllEpisodes() {
         selectedOption={dataFromEpisode}
         setSelectedOption={dataFromChildForEpisode}
       />
+      <Results forlink="/character/" />
     </Box>
   );
 }

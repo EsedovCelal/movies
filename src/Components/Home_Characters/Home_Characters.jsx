@@ -99,7 +99,7 @@ export default function HomeCharacters() {
               stat={dataFromStatus}
               gen={dataFromGender}
               search={dataFromSearch}
-              forlink="/character"
+              forlink="/character/"
             />
           </Box>
         </Box>

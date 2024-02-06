@@ -3,26 +3,33 @@ import { Link } from "react-router-dom";
 import "./Results.css";
 import { Typography, Box, Card, Grid } from "@mui/material";
 
-function Results({ stat, spec, gen, search, forlink }) {
+function Results({ stat, spec, gen, search, forlink, ids }) {
   const [data, setData] = useState(null);
 
   useEffect(() => {
     fetch(
-      `https://rickandmortyapi.com/api${forlink}?
-      ${search ? `&name=${search}` : ""}
-      ${stat ? `&status=${stat}` : ""}
-      ${spec ? `&species=${spec}` : ""}
-      ${gen ? `&gender=${gen}` : ""}`,
-      {
-        method: "GET",
-      }
+      `https://rickandmortyapi.com/api${forlink}
+    ${
+      `${search ? `&name=${search}` : ""}` ||
+      `${stat ? `&status=${stat}` : ""}` ||
+      `${spec ? `&species=${spec}` : ""}` ||
+      `${gen ? `&gender=${gen}` : ""}`
+        ? "?"
+        : ""
+    }
+    ${search ? `&name=${search}` : ""}
+    ${stat ? `&status=${stat}` : ""}
+    ${spec ? `&species=${spec}` : ""}
+    ${gen ? `&gender=${gen}` : ""}
+    ${ids ? `${ids}` : ""}`,
+      { method: "GET" }
     )
       .then((response) => response.json())
       .then((receivedData) => {
         setData(receivedData.results);
       })
       .catch((error) => console.log(error));
-  }, [gen, stat, spec, search]);
+  }, [gen, stat, spec, search, forlink]);
 
   return (
     data && (
