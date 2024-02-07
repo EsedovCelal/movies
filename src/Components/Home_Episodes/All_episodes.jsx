@@ -3,6 +3,7 @@ import Selection from "../Selection";
 import { useState, useEffect } from "react";
 import Results from "../Results";
 import { Box, Typography } from "@mui/material";
+
 export default function AllEpisodes() {
   const [dataFromEpisode, SetDataFromEpisode] = useState(null); //for selected episode from Selection
   const [episodeInfo, setEpisodeInfo] = useState([]); //for taking all episode count
@@ -11,6 +12,7 @@ export default function AllEpisodes() {
   const dataFromChildForEpisode = (data) => {
     SetDataFromEpisode(data);
   };
+
   useEffect(() => {
     fetch(`https://rickandmortyapi.com/api/episode/${page}`, {
       method: "GET",
@@ -58,7 +60,13 @@ export default function AllEpisodes() {
         selectedOption={dataFromEpisode}
         setSelectedOption={dataFromChildForEpisode}
       />
-      <Results forlink="/character/" />
+      <Results
+        forlink="/character/"
+        ids={[
+          1, 2, 3, 4, 34, 22, 23, 26, 23, 78, 6, 756, 56, 4, 54, 54, 5, 34, 2,
+          3, 232, 3,
+        ]}
+      />
     </Box>
   );
 }

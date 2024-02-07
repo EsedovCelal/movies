@@ -7,29 +7,24 @@ function Results({ stat, spec, gen, search, forlink, ids }) {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch(
-      `https://rickandmortyapi.com/api${forlink}
-    ${
-      `${search ? `&name=${search}` : ""}` ||
-      `${stat ? `&status=${stat}` : ""}` ||
-      `${spec ? `&species=${spec}` : ""}` ||
-      `${gen ? `&gender=${gen}` : ""}`
-        ? "?"
-        : ""
-    }
-    ${search ? `&name=${search}` : ""}
-    ${stat ? `&status=${stat}` : ""}
-    ${spec ? `&species=${spec}` : ""}
-    ${gen ? `&gender=${gen}` : ""}
-    ${ids ? `${ids}` : ""}`,
-      { method: "GET" }
-    )
+    const baseUrl = new URL(`https://rickandmortyapi.com/api${forlink}`);
+    const params = new URLSearchParams();
+    if (search) params.append("name", search);
+    if (stat) params.append("status", stat);
+    if (spec) params.append("species", spec);
+    if (gen) params.append("gender", gen);
+    if (ids) params.append("", ids);
+    const urlWithParams =
+      baseUrl.toString() + (params.toString() ? `?${params.toString()}` : "");
+    fetch(urlWithParams)
       .then((response) => response.json())
       .then((receivedData) => {
         setData(receivedData.results);
       })
-      .catch((error) => console.log(error));
-  }, [gen, stat, spec, search, forlink]);
+      .catch((error) => console.log("Fetching error:", error));
+    console.log(urlWithParams);
+    console.log(ids);
+  }, [gen, stat, spec, search, forlink, ids]);
 
   return (
     data && (
