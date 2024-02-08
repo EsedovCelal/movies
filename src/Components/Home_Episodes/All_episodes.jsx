@@ -27,8 +27,17 @@ export default function AllEpisodes() {
               label: `Episode - ${data.id}`,
               name: `${data.name}`,
               air_date: `${data.air_date}`,
+              id: `${data.id}`,
+              characters: data.characters,
             },
           ]);
+          setCharactersForOneEpisode((charactersForOneEpisode) => [
+            ...charactersForOneEpisode,
+            data,
+          ]);
+          // const episode = data.find((obj) => {
+          //   return obj.id === dataFromEpisode.replace(/^\D+/g, "");
+          // });
         }
         if (data.error === "Episode not found") {
           console.log("end");
@@ -39,6 +48,13 @@ export default function AllEpisodes() {
 
   return (
     <Box>
+      {console.log(
+        dataFromEpisode
+          ? episodeInfo[
+              dataFromEpisode.replace(/^\D+/g, "") - 1
+            ].characters.map((obj) => charactersForOneEpisode.push(obj))
+          : ""
+      )}
       <Box>
         <Typography>
           Episode name:
@@ -53,7 +69,6 @@ export default function AllEpisodes() {
             : ""}
         </Typography>
       </Box>
-      {console.log(dataFromEpisode ? dataFromEpisode.replace(/^\D+/g, "") : "")}
       <Selection
         title={"Episodes"}
         options={episodeInfo}
@@ -62,10 +77,7 @@ export default function AllEpisodes() {
       />
       <Results
         forlink="/character/"
-        ids={[
-          1, 2, 3, 4, 34, 22, 23, 26, 23, 78, 6, 756, 56, 4, 54, 54, 5, 34, 2,
-          3, 232, 3,
-        ]}
+        ids={[200, 300, 400, 500, 600, 700, 800]}
       />
     </Box>
   );

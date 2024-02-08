@@ -7,23 +7,22 @@ function Results({ stat, spec, gen, search, forlink, ids }) {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    const baseUrl = new URL(`https://rickandmortyapi.com/api${forlink}`);
+    const baseUrl = new URL(
+      `https://rickandmortyapi.com/api${forlink}${ids ?? ""}`
+    );
     const params = new URLSearchParams();
     if (search) params.append("name", search);
     if (stat) params.append("status", stat);
     if (spec) params.append("species", spec);
     if (gen) params.append("gender", gen);
-    if (ids) params.append("", ids);
     const urlWithParams =
       baseUrl.toString() + (params.toString() ? `?${params.toString()}` : "");
     fetch(urlWithParams)
       .then((response) => response.json())
       .then((receivedData) => {
-        setData(receivedData.results);
+        setData(ids ? receivedData : receivedData.results);
       })
       .catch((error) => console.log("Fetching error:", error));
-    console.log(urlWithParams);
-    console.log(ids);
   }, [gen, stat, spec, search, forlink, ids]);
 
   return (
