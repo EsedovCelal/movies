@@ -23,13 +23,18 @@ export default function HomeCharacters() {
   };
   const HomeCharacterInput = {
     width: "40%",
+    marginBottom: "10px",
   };
   const HomeCharacterClearFilter = {
     cursor: "pointer",
     textDecoration: "underline",
   };
   const HomeCharacterInputFilerAndResults = {};
-  const HomeCharacterFilter = {};
+  const HomeCharacterFilter = {
+    maxHeight: "300px",
+    display: "grid",
+    alignContent: "space-between",
+  };
   const HomeCharacterResults = {};
 
   const dataFromChildForStatus = (data) => {
@@ -66,14 +71,16 @@ export default function HomeCharacters() {
         </Box>
         <Box sx={HomeCharacterFilAndRes}>
           <Box sx={HomeCharacterFilter}>
-            <Typography>Filters</Typography>
-            <Typography
-              variant="button"
-              sx={HomeCharacterClearFilter}
-              onClick={() => handleClearFilter()}
-            >
-              Clear Filters
-            </Typography>
+            <Box>
+              <Typography>Filters</Typography>
+              <Typography
+                variant="button"
+                sx={HomeCharacterClearFilter}
+                onClick={() => handleClearFilter()}
+              >
+                Clear Filters
+              </Typography>
+            </Box>
             <Selection
               title="Status"
               options={status}
@@ -99,7 +106,6 @@ export default function HomeCharacters() {
               stat={dataFromStatus}
               gen={dataFromGender}
               search={dataFromSearch}
-              forlink="/character/"
             />
           </Box>
         </Box>

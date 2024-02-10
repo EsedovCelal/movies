@@ -7,20 +7,33 @@ import { Box, Typography } from "@mui/material";
 export default function AllEpisodes() {
   const [dataFromEpisode, SetDataFromEpisode] = useState(null); //for selected episode from Selection
   const [episodeInfo, setEpisodeInfo] = useState([]); //for taking all episode count
-  const [page, setPage] = useState(1); //for +1 page number
-  const [charactersForOneEpisode, setCharactersForOneEpisode] = useState([]);
+  const [episode, setEpisode] = useState(1); //for +1 episode number
+
+  const charactersForOneEpisode = [];
+  const array = dataFromEpisode
+    ? episodeInfo[dataFromEpisode.replace(/^\D+/g, "") - 1].characters.filter(
+        (obj) => charactersForOneEpisode.push(obj)
+      )
+    : "";
+  const newArray =
+    array && array.map((number) => number.replace(/[^0-9]/g, ""));
+
   const dataFromChildForEpisode = (data) => {
     SetDataFromEpisode(data);
   };
 
+  const episodeSelectAndResults = {
+    display: "flex",
+  };
+
   useEffect(() => {
-    fetch(`https://rickandmortyapi.com/api/episode/${page}`, {
+    fetch(`https://rickandmortyapi.com/api/episode/${episode}`, {
       method: "GET",
     })
       .then((response) => response.json())
       .then((data) => {
         if (data.id) {
-          setPage(page + 1);
+          setEpisode(episode + 1);
           setEpisodeInfo((episodeInfo) => [
             ...episodeInfo,
             {
@@ -31,30 +44,16 @@ export default function AllEpisodes() {
               characters: data.characters,
             },
           ]);
-          setCharactersForOneEpisode((charactersForOneEpisode) => [
-            ...charactersForOneEpisode,
-            data,
-          ]);
-          // const episode = data.find((obj) => {
-          //   return obj.id === dataFromEpisode.replace(/^\D+/g, "");
-          // });
         }
         if (data.error === "Episode not found") {
           console.log("end");
         }
       })
       .catch((error) => console.log(error));
-  }, [page]);
+  }, [episode]);
 
   return (
     <Box>
-      {console.log(
-        dataFromEpisode
-          ? episodeInfo[
-              dataFromEpisode.replace(/^\D+/g, "") - 1
-            ].characters.map((obj) => charactersForOneEpisode.push(obj))
-          : ""
-      )}
       <Box>
         <Typography>
           Episode name:
@@ -69,16 +68,22 @@ export default function AllEpisodes() {
             : ""}
         </Typography>
       </Box>
-      <Selection
-        title={"Episodes"}
-        options={episodeInfo}
-        selectedOption={dataFromEpisode}
-        setSelectedOption={dataFromChildForEpisode}
-      />
-      <Results
-        forlink="/character/"
-        ids={[200, 300, 400, 500, 600, 700, 800]}
-      />
+      <Box sx={episodeSelectAndResults}>
+        <Selection
+          title={"Episodes"}
+          options={episodeInfo}
+          selectedOption={dataFromEpisode}
+          setSelectedOption={dataFromChildForEpisode}
+        />
+        <Results
+          ids={
+            newArray || [
+              1, 2, 35, 38, 62, 92, 127, 144, 158, 175, 179, 181, 239, 249, 271,
+              338, 394, 395, 435,
+            ]
+          }
+        />
+      </Box>
     </Box>
   );
 }
